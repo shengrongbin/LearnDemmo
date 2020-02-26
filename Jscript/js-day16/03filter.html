@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr=[
+            {
+                id:01,
+                content:"react",
+                checked:false
+            },
+            {
+                id:02,
+                content:"vue",
+                checked:true
+            },
+            {
+                id:03,
+                content:"small",
+                checked:false
+            },
+        ]
+
+        var newarr=arr.filter(item=>item.checked==false)
+        console.log(newarr);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name=referrer content=never>
+    <title>Document</title>
+    <script src="lib/jquery-3.4.1.js"></script>
+    <style>
+        .parent{
+            margin: 0 20%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            padding: 10px;
+            width: 150px;
+            height: 200px;
+            margin: 20px 0;
+        }
+        img{
+            width: 100%;
+            height: 80%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+
+    </div>
+    <script>
+        var url ="https://douban.uieee.com/v2/movie/top250";
+        $.ajax({
+            url,
+            type:"get",
+            dataType:"jsonp",
+            success:res=>{
+                var subjects = res.subjects;
+                var movies = [];
+                for(var i=0;i<subjects.length;i++){
+                    var obj = {}
+                    obj.title = subjects[i].title;
+                    obj.imageUrl = subjects[i].images.small;
+                    movies.push(obj)
+                }
+               
+                for(var j =0;j<movies.length;j++){
+                    var item = $(`<div class="item"><img src="${movies[j].imageUrl}"/><p>${movies[j].title}</p></div>`)
+                    $(".parent").append(item)
+                }
+            },
+            error:err=>{
+                console.log(err.status)
+                if(err.status == 404){
+                    window.location.href ="404.html"
+                }
+            }
+        })
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

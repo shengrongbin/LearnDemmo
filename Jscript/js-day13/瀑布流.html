@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        .content{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        img{
+            width: 220px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="item">
+            <img src="img/01.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/02.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/03.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/04.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/05.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/06.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/07.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/08.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/09.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/10.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/11.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="img/12.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        // 获取每一排的图片数目
+        var ww=$(window).width();
+        var itemWidth=$(".item").outerWidth();
+        var number=Math.floor(ww/itemWidth);
+        
+        //将第一排每个图片的高度放置在一起（数组）
+        var arrHeight=[]
+        $(".item").each((index,item)=>{
+            if(index<number){
+                let itemHeight=$(".item").outerHeight;
+                arrHeight.push(itemHeight)
+            }else{
+
+            }
+        })
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

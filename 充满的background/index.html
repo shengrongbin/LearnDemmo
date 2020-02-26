@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+        body {
+            height: 1090px;
+        }
+
+        .bg {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 
+        完全填充   不论父元素大小有多少
+         */
+        .bg-img {
+            width: 500px;
+        }
+        .main-img{
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <img @click="handleClick" src="img/musicbg.jpg" class="main-img" alt="">
+            <div class="bg" v-if="isBg" @click="handleBg">
+                <img  src="img/musicbg.jpg" class="bg-img" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data(){
+                return{
+                    isBg:false
+                }
+            },
+            methods:{
+                handleClick(){
+                    this.isBg=true
+                },
+                handleBg(){
+                    this.isBg=false
+                }
+            }
+        })
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

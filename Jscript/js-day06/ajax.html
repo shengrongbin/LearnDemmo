@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body{
+            background: red
+        }
+        #loading{
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <img src="" alt="">
+    </div>
+    加载成功
+    <script>
+        var url="https://www.easy-mock.com/mock/5d674363a87a3f5f080bbb2f/ajax/base";
+        $.ajax({
+            url:url,
+            type:"get",
+            dataType:"json",
+            success:function(res){
+                $("#loading").hide();
+                
+            },
+            fail:function(err){
+                log(err);
+            },
+            beforeSend:function(){
+               $("#loading").show();
+            }
+        })
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

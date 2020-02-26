@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/jquery-1.7.2.js"></script>
+</head>
+<body>
+    <script>
+        var url="https://douban.uieee.com/v2/movie/top250";
+        $.ajax({
+            url,
+            type:"get",
+            dataType:"jsonp",
+            success:res=>{
+                var oSubjects=res.subjects;
+                var movie=[];
+                for(var i=0;i<oSubjects.length;i++){
+                    var oObj={};
+                    oObj.title=oSubjects[i].title;
+                    oObj.imgUrl=oSubjects[i].images.small;
+                    movie.push(oObj);
+                }
+                console.log(movie);
+                
+                for(var i=0;i<movie.length;i++){
+                    var $item=(`<div><img src="${movie[i].imgUrl}"/><p>${movie[i].title}</p></div>`);
+                    $("body").append($item);
+                }
+            }
+        })
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

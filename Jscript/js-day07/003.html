@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/jquery-1.7.2.js"></script>
+    <script src="http.js"></script>
+    <style>
+        img {
+            display: block;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text">
+        <img src="" alt=""><br>
+        <audio src="" controls></audio>
+    </div>
+    <script>
+
+
+        $("input").keyup(function (event) {
+            if (event.keyCode == 13) {
+                var oValue = $(this).val;
+                http({
+                    url: `search?keywords=${oValue}`,
+                    callback: getMusicId
+                })
+                function getMusicId(res) {
+                    var id = res.result.songs[0].id;
+                    http({
+                        url: `${url}song/detail?ids=${id}`,
+                        callback: getMusicImgUrl
+                    })
+                    http({
+                        url: `${url}song/url?id=${id}`,
+                        callback: getMusicUrl
+                    })
+                }
+                function getMusicImgUrl(res) {
+                    var oImgUrl = res.songs[0].al.picUrl;
+                    $("img").attr("src", oImgUrl);
+                }
+                function getMusicUrl(res) {
+                    var oPlay = res.data[0].url;
+                    $("audio").attr("src", oPlay);
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

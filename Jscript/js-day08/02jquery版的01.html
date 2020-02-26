@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            *{margin: 0;padding: 0}
+            body{
+                height: 2000px;
+                background: red;
+            }
+            div{
+                height: 1000px;
+                background: green;
+            }
+        </style>
+        <script src="../lib/jquery-1.7.2.js"></script>
+</head>
+<body>
+    <div></div>
+    <script>
+        var $sh=$(document).height();
+        var $ah=$(window).height();
+        $(window).scroll(function(){
+            var $st=$(document).scrollTop();
+            if($ah+$st==$sh){
+                alert("到达底部")
+            }
+        })
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

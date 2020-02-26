@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .parent{
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4,auto);
+            grid-template-rows: repeat(4,auto);
+            border: 1px solid #333;
+            grid-template-areas: 'a a b'
+                                 'a a c'
+                                 'd d c';
+        }
+        .one{
+            grid-area: a;
+        }
+        .two{
+            grid-area: b;
+        }
+        .three{
+            grid-area: c;
+        }
+        .four{
+            grid-area: d;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+    </div>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

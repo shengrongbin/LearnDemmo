@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/jquery-1.7.2.js"></script>
+    <style>
+        img{
+            display: block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="ipt">
+    <div>
+        <img src="" alt=""><br>
+        <audio src="" controls="controls"></audio>
+    </div>
+    <script>
+        var url="https://music.aityp.com/";
+        var oInput=document.getElementById("ipt");
+        oInput.onkeydown=function(event){
+            if(event.keyCode==13){
+                $.ajax({
+                    url:`${url}search?keywords=${this.value}`,
+                    type:"get",
+                    dataType:"json",
+                    success:res=>{
+                        var id=res.result.songs[0].id;
+                        $.ajax({
+                            url:`${url}song/detail?ids=${id}`,
+                            type:"get",
+                            dataType:"json",
+                            success:res=>{
+                                var oImgUrl=res.songs[0].al.picUrl;
+                                $("img").attr("src",oImgUrl);
+                            }
+                        })
+                        $.ajax({
+                            url:`${url}song/url?id=${id}`,
+                            type:"get",
+                            dataType:"json",
+                            success:res=>{
+                                var oPlay=res.data[0].url;
+                                $("audio").attr("src",oPlay);
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

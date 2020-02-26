@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p"></p>
+    <script>
+        setInterval(() => {
+            var oDate=new Date();
+        var playTime=new Date("2019-09-19 09:00:00"). getTime();
+        var mill=oDate.getTime();
+        var gapTime=playTime-mill;
+        var changeTime=gapTime/1000;
+        var hours=Math.floor(changeTime/3600);
+        console.log(hours);
+        
+        var minutes=Math.floor(changeTime%3600/60);
+        var seconds=Math.floor(changeTime%3600%60);
+        function change(time){
+            return time<10?"0"+time:time
+        }
+        var realTime=change(hours)+":"+change(minutes)+":"+change(seconds)
+        document.getElementById("p").innerHTML=realTime
+        }, 100);
+        // console.log(Math.ceil(Math.random()*100) );
+        
+        
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

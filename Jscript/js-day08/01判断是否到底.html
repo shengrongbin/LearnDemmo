@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/jquery-1.7.2.js"></script>
+    <style>
+        *{margin: 0;padding: 0}
+        body{
+            height: 2000px;
+            background: red;
+        }
+        div{
+            height: 1000px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var scrollHeight=document.documentElement.scrollHeight;  //获取整个文档的高度
+        window.onscroll=function(){
+            var scrollTop=document.documentElement.scrollTop; // 获取滚动条的距顶高度
+            
+            var availHeight=document.documentElement.clientHeight;// 获取可视页面的高度
+
+            console.log(scrollTop);
+            
+            if(scrollTop+availHeight==scrollHeight){
+                alert("到达底部")
+            }
+            
+        }
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

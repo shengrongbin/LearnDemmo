@@ -1,0 +1,20 @@
+@color:"#c20c0c";
+body{
+    backgroud:@color;
+}
+.wh(@w:100px,@h:100px){
+    width: @w;
+    height: @h;
+}
+.one{
+    .wh();
+    &:hover{
+        color: red;
+    }
+    .child{
+        border:1px solid #333
+    }
+}
+.two{
+    .wh(200px,200px)
+}

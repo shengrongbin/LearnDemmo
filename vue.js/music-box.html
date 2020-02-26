@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+    <style>
+        
+        .container{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(pink,red);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 10px 0;
+        }
+        input{
+            padding: 10px;
+            border-radius: 10px;
+        }
+        p{
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 300px;
+            height: 21px;
+            color: aliceblue;
+        }
+        .play{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 48%;
+            top: 41%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <div class="box">
+            <input type="text" placeholder="搜索" v-model="keywords" @keydown.enter="play" />
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574081303940&di=6f66066d2a6219d81866516ed6473369&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F17%2F07%2F29%2Fa746008cd56882aaca8d1aac435a246d.jpg%2521%2Ffwfh%2F804x804%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue" alt="">
+            <p>{{song.name}}</p>
+            <audio :src="url" controls autoplay ref="adio"></audio>
+            <img :src="isPlay?'./img/009c64f38c3934249ee934bd60a2f977.jpg':'./img/b52fe57fd34d49d6bec6f8770ef432ed.jpg'" alt="" class="play" @click="change">
+        </div>
+    </div>
+</body>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            keywords:"",
+            url:"",
+            song:{},
+            isPlay:false
+        },
+        methods: {
+            play(){
+                axios.get(`http://192.168.14.49:5000/search?keywords=${this.keywords}`).then(res => {
+                    this.song=res.data.result.songs[0]
+                    return res.data.result.songs[0].id
+                }).then(id=>{
+                    axios.get(`http://192.168.14.49:5000/song/url?id=${id}`).then(res => {
+                       this.url=res.data.data[0].url
+                    })
+                })
+                this.isPlay=true
+                this.keywords=""
+            },
+            change(){
+                this.isPlay=!this.isPlay
+                if(this.isPlay){
+                    this.$refs.adio.play()
+                }else{
+                    this.$refs.adio.pause()
+                }
+            }
+        },
+        filters:{
+
+        }
+    })
+</script>
+</html>

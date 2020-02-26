@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        .box>img {
+            width: 240px;
+            padding: 5px;
+            vertical-align: bottom;
+        }
+
+        .box {
+            position: relative;
+            float: left;
+            border: 1px solid #eee;
+            border-radius: 5px;
+
+        }
+
+        #container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="box">
+            <img src="images/01.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/02.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/03.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/04.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/05.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/06.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/07.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/08.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/09.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/10.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/11.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/12.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            var url = {
+                dataUrl: [{
+                    src: "01.jpg"
+                }, {
+                    src: "02.jpg"
+                }, {
+                    src: "03.jpg"
+                }, {
+                    src: "04.jpg"
+                }, {
+                    src: "05.jpg"
+                }, {
+                    src: "06.jpg"
+                }, {
+                    src: "07.jpg"
+                }, {
+                    src: "08.jpg"
+                }, {
+                    src: "09.jpg"
+                }, {
+                    src: "10.jpg"
+                }, {
+                    src: "11.jpg"
+                }, {
+                    src: "12.jpg"
+                }]
+            }
+            sortImage()
+
+            $(window).scroll(function () {
+                if (onReachBottom()) {
+                    loadMore()
+                }
+            })
+
+
+            function loadMore() {
+                var html = ""
+                $.each(url.dataUrl, (index, item) => {
+                    var $item = `<div class="box"><img src="images/${item.src}"/></div>`
+                    html += $item;
+                })
+                $('#container').append(html)
+                sortImage()
+
+
+            }
+
+            function sortImage() {
+                var ww = $(window).width();
+                var itemWidth = $('.box').width();
+                var num = Math.floor(ww / itemWidth);
+                var arr = [];
+                $('.box').each((index, item) => {
+                    if (index < num) {
+                        arr.push($(item).height())
+                    } else {
+                        var minHeight = Math.min(...arr);
+                        var minIndex = arr.indexOf(minHeight);
+                        var offsetLeft = $('.box').eq(minIndex).offset().left;
+                        $('.box').eq(index).css({
+                            position: 'absolute',
+                            left: offsetLeft,
+                            top: minHeight
+                        })
+                        arr[minIndex] += $('.box').eq(index).height();
+                    }
+                })
+            }
+
+            function onReachBottom() {
+                var dh = $(document).height();
+                var sh = $(window).scrollTop();
+                var wh = $(window).height();
+                return (Math.ceil(sh + wh) == dh) ? true : false;
+            }
+
+
+        }
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

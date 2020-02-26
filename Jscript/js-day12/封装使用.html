@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+            var baseUrl="https://music.aityp.com/"
+                function http(url){
+                    return new Promise((reslove,reject)=>{
+                        $.ajax({
+                            url:baseUrl+url,
+                            type:"get",
+                            dataType:"json",
+                            success:res=>{
+                                reslove(res)
+                            },
+                            error:err=>{
+                                reject(err)
+                            }
+                        })
+                    })
+                }
+               http("top/playlist?cat=华语").then(res=>{
+                   let id=res.playlists[0].id;
+                   return id
+               }).then(res=>{
+                   http(`playlist/detail?id=${res}`).then(res=>{
+                       let id=res.playlists.trackIds[0].id
+                       return id
+                   }).then(res=>{
+                       http(`song/url?id=${res}`).then(res=>{
+                           console.log((res));
+                           
+                       })
+                   })
+               })
+        </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

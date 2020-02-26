@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/index.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            width: 230px;
+            padding: 5px;
+            vertical-align: bottom;
+        }
+
+        .box {
+            position: relative;
+            float: left;
+            width: 240px;
+            border: 1px solid rgba(51, 51, 51, 0.1);
+            border-radius: 5px
+        }
+
+        #container {
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="box">
+            <img src="images/01.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/02.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/03.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/04.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/05.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/06.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/07.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/08.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/09.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/10.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/11.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/12.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            
+            var url = {
+                dataUrl: [{
+                    src: "01.jpg"
+                }, {
+                    src: "02.jpg"
+                }, {
+                    src: "03.jpg"
+                }, {
+                    src: "04.jpg"
+                }, {
+                    src: "05.jpg"
+                }, {
+                    src: "06.jpg"
+                }, {
+                    src: "07.jpg"
+                }, {
+                    src: "08.jpg"
+                }, {
+                    src: "09.jpg"
+                }, {
+                    src: "10.jpg"
+                }, {
+                    src: "11.jpg"
+                }, {
+                    src: "12.jpg"
+                }]
+            }
+            var container = document.getElementById("container");
+            var box = document.getElementsByClassName("box");
+            place_img();
+            window.onscroll = function () {
+                if (sCondition()) {
+                    scrollShow();
+                }
+            }
+            
+            function scrollShow() {
+                var arr = url.dataUrl;
+                for (var i = 0; i < arr.length; i++) {
+                    var box = document.createElement("box");
+                    box.className = "box";
+                    var img = document.createElement("img");
+                    img.setAttribute("src", "images/" + arr[i].src);
+                    box.appendChild(img);
+                    container.appendChild(box);
+                    place_img();
+                }
+            }
+
+            function place_img() {
+                // 1.获取屏幕的width,看一排能放几张图片
+
+                var dw = window.innerWidth;
+                var boxWidth = box[0].offsetWidth;
+                var num = Math.floor(dw / boxWidth)
+                container.style.width = boxWidth * num + "px";
+
+                // 2.获取前五张图片的height,将其存入一个数组
+                var box_arr = Array.prototype.slice.call(box, 0);
+                var height_arr = []
+                box_arr.forEach(function (value, index) {
+                    if (index < num) {
+                        var height = value.offsetHeight;
+                        height_arr.push(height);
+                    } else {
+                        // 3.从数组中高度最小的地方开始放置图片
+                        var minHeight = Math.min(...height_arr);
+                        var minIndex = height_arr.indexOf(minHeight);
+                        var offsetLeft = box[minIndex].offsetLeft;
+                        box_arr[index].style.position = "absolute";
+                        // left为最大高度位置图片的offsetLedt
+                        box_arr[index].style.left = offsetLeft + "px";
+                        // top为最小高度
+                        box_arr[index].style.top = minHeight + "px"
+                        // 4.重新设置最小位置的高度
+                        height_arr[minIndex] += box_arr[index].offsetHeight;
+                    }
+                })
+            }
+
+            function sCondition() {
+                //滚动条距离顶部的高度
+                var sH = document.documentElement.scrollTop;
+                //可视区域的高度
+                var cH = document.documentElement.clientHeight;
+                var lastH = box[box.length - 1].offsetTop + box[box.length - 1].offsetHeight / 2;
+                return (sH + cH > lastH) ? true : false;
+
+            }
+        }
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

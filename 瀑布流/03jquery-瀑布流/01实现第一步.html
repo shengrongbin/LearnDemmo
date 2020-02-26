@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <style>
+        *{margin:0;padding:0}
+        div{
+            box-sizing: border-box;
+        }
+        .box>img{
+            width:200px;
+            padding:5px;
+            vertical-align: bottom;
+        }
+        .box{
+            position: relative;
+            float: left;
+            border: 1px solid #eee;
+            border-radius: 5px;
+
+        }
+        #container{
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box">
+            <img src="images/01.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/02.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/03.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/04.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/05.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/06.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/07.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/08.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/09.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/10.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/11.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="images/12.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        /* 1.首先判断一排能放几张图片 */
+        var boxWidth =  $('.box').width();
+        var windowWidth =  $(window).width()
+        var num = Math.floor(windowWidth/boxWidth);
+        /* 2.获取前一排图片的高度将他们存入一个数组 */
+        var heightArr = [];
+        $('.box').each(((index,item)=>{
+            if(index<num){
+                var boxHeight =    $('.box').eq(index).height();
+                heightArr.push(boxHeight)
+            }else{
+                /* 3.从图片高度最小的地方开始放置图片 
+                图片样式:1.绝对定位2.left minIndex的offsetLeft  top:minHeight
+                */
+                var minHeight = Math.min(...heightArr);
+                var minIndex = heightArr.indexOf(minHeight);
+                var offsetLeft =$('.box').eq(minIndex).offset().left;
+                $('.box').eq(index).css({left:offsetLeft,top:minHeight,position:'absolute'})
+                /* 4.重新设置数组的最小高度 */
+                heightArr[minIndex]+=$('.box').eq(index).height();
+            }
+        }))
+        console.log(heightArr)
+    </script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

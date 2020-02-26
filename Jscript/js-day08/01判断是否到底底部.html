@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            height: 2000px;
+            background: red;
+        }
+
+        div {
+            height: 1000px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script src="lib/base.js"></script>
+    <!-- 判断滚动条是否到达底部 -->
+    <script>
+        /* 获取滚动区域的高度 */
+        // var scrollHeight = document.documentElement.scrollHeight;
+        // console.log(scrollHeight)
+        // window.onscroll = function(){
+        //     var scrollTop = Math.ceil(document.documentElement.scrollTop);
+        //     var availHeight = document.documentElement.clientHeight;
+        //     if(scrollTop+availHeight == scrollHeight){
+        //         console.log("到达底部")
+        //     }
+
+        // }
+        window.onscroll = function(){
+            console.log(onReachBottom())
+        }
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

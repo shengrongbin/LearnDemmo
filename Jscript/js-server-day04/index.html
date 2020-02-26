@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/jquery-1.7.2.js"></script>
+</head>
+
+<body>
+    <p id="name"></p>
+    <p id="age"></p>
+    <p id="sex"></p>
+    <script>
+        $.ajax({
+            url: "http://192.168.14.45:8080/",
+            type: "get",
+            dataType: "json",
+            success: res => {
+                console.log(res);
+                $("#name").html(res.name);
+                $("#age").html(res.age);
+                $("#sex").html(res.sex);
+            }
+
+        })
+    </script>
+    <!-- 
+        get post 区别
+        get url地址后会跟数据  post不会
+        因此post安全
+        上传数据量   get 2000字符    post 无上限
+     -->
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

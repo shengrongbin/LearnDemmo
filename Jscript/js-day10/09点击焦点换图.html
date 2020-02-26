@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="../lib/jquery-1.7.2.js"></script>
+    <style>
+
+    </style>
+    <script>
+
+        // window.onload = function () {
+        //     var oNext = document.getElementById("next");
+        //     var oPrev = document.getElementById("prev");
+        //     var oBtns = document.getElementsByTagName("span");
+        //     var oImg = document.getElementsByTagName("img");
+        //     var time = 0;
+        //     for (var i = 0; i < oBtns.length; i++) {
+        //         oBtns[i].index = i
+        //     }
+        //     oNext.onclick = function () {
+        //         time += 1;
+        //         if (time > 4) {
+        //             time = 0;
+        //         }
+        //         change(time);
+        //     }
+        //     oPrev.onclick = function () {
+        //         time -= 1;
+        //         if (time < 0) {
+        //             time = 4;
+        //         }
+        //         change(time);
+        //     }
+        //     for (var j = 0; j < oBtns.length; j++) {
+        //         oBtns[j].onclick = function () {
+        //             for (let i = 0; i < oBtns.length; i++) {
+        //                 oBtns[i].className = "";
+        //                 oImg[i].style.display = "none";
+        //             }
+        //             this.className = "current"
+        //             oImg[this.index].style.display = "block";
+        //             time = this.index;
+        //         }
+        //     }
+
+        //     function change(time) {
+        //         for (let i = 0; i < oImg.length; i++) {
+        //             oImg[i].style.display = "none";
+        //             oBtns[i].className = "";
+        //         }
+        //         oImg[time].style.display = "block";
+        //         oBtns[time].className = "current"
+        //     }
+        // }
+
+        $(function () {
+            var time = 0;
+            $("#next").click(function () {
+                if (!$("img").is(":animated")) {
+                    time += 1;
+                    if (time > 4) {
+                        time = 0;
+                    }
+                    change(time)
+                }
+
+            })
+            $("#prev").click(function () {
+                if (!$("img").is(":animated")) {
+                    time -= 1;
+                    if (time < 0) {
+                        time = 4;
+                    }
+                    change(time)
+                }
+
+            })
+            $("span").click(function () {
+                if (!$("img").is(":animated")) {
+                    time = $(this).index();
+                    change(time)
+                }
+
+            })
+            function change(index) {
+                $("img").eq(index).fadeIn(1000).siblings().fadeOut(1000);
+                $("span").eq(index).addClass("current").siblings().removeClass("current");
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div id="list">
+            <img src="images/01.png" alt="">
+            <img src="images/02.png" alt="">
+            <img src="images/03.png" alt="">
+            <img src="images/04.png" alt="">
+            <img src="images/05.png" alt="">
+        </div>
+        <button id="prev"></button>
+        <button id="next"></button>
+        <div id="btns">
+            <span class="current"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>
